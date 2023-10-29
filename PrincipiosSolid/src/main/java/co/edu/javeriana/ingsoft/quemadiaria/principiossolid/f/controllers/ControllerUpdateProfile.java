@@ -1,12 +1,18 @@
 package co.edu.javeriana.ingsoft.quemadiaria.principiossolid.f.controllers;
 
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.MenuLogin;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Perfil;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.b.usecases.ActualizarPerfil;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,6 +41,19 @@ public class ControllerUpdateProfile implements Initializable {
     private AnchorPane setUpAccount;
     @FXML
     private Button setUpProfile;
+    @FXML
+    private TextField textAltura;
+    @FXML
+    private TextField textPeso;
+    @FXML
+    private ChoiceBox<String> textComplexion;
+    @FXML
+    private ChoiceBox<String> textObjetivo;
+    private ActualizarPerfil actualizarPerfil;
+
+    public void setActualizarPerfil(ActualizarPerfil actualizarPerfil) {
+        this.actualizarPerfil = actualizarPerfil;
+    }
 
     public void setMainApp(MenuLogin mainApp) {
         this.mainApp = mainApp;
@@ -45,6 +64,11 @@ public class ControllerUpdateProfile implements Initializable {
         setUpAccount.setTranslateX(171);
         cuenta1.setVisible(true);
         cuenta2.setVisible(false);
+        ObservableList<String> opcionesComplexion = FXCollections.observableArrayList("Delgada", "Normal", "Robusta");
+        ObservableList<String> opcionesObjetivo = FXCollections.observableArrayList("Llegar al peso ideal de acuerdo a mi altura", "Adelgazar y tonificar mi cuerpo", "Ganar masa muscular");
+        // Asignar la lista de elementos al ChoiceBox
+        textComplexion.setItems(opcionesComplexion);
+        textObjetivo.setItems(opcionesObjetivo);
     }
 
     private void animateAndSetVisible(TranslateTransition slide, double toX, Group groupToShow, Group groupToHide) {
@@ -131,4 +155,5 @@ public class ControllerUpdateProfile implements Initializable {
             e.printStackTrace();
         }
     }
+
 }

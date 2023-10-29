@@ -9,6 +9,7 @@ public class Usuario implements Serializable {
     private String apellido;
     private final String correo;
     private final Credenciales credenciales;
+    private Perfil perfil;
 
 
     public Usuario(String numeroDocumento, String correo, Credenciales credenciales) {
@@ -44,8 +45,23 @@ public class Usuario implements Serializable {
         this.apellido = apellido;
     }
 
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
     @Override
     public String toString() {
-        return "Usuario {" + "numeroDocumento=" + numeroDocumento + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", credenciales=" + credenciales + '}';
+        return "Usuario{" +
+                "numeroDocumento='" + numeroDocumento + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", correo='" + correo + '\'' +
+                ", credenciales=" + credenciales +
+                ", perfil=" + perfil +
+                '}';
     }
 }

@@ -1,6 +1,6 @@
 package co.edu.javeriana.ingsoft.quemadiaria.principiossolid.d.infraestructure.persistencia.archivos;
 
-import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Credenciales;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Perfil;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Usuario;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.excepciones.QuemaDiariaException;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.b.usecases.CifrarTexto;
@@ -49,7 +49,7 @@ public class UsuarioArchivosRepositorio implements UsuarioRepositorio {
 
         Gson gson = new Gson();
         try {
-            Path filePath = Path.of("Usuarios.json");
+            Path filePath = Path.of("PrincipiosSolid/Usuarios.json");
             String content = Files.readString(filePath);
             List<Usuario> usersList = new ArrayList<>();
             try {
@@ -93,4 +93,43 @@ public class UsuarioArchivosRepositorio implements UsuarioRepositorio {
                 orElseThrow(()->new QuemaDiariaException(QuemaDiariaException.ERROR_USUARIO_NO_ENCONTRADO, "Usuario no encontrado: " + userName));
     }
 
+    @Override
+    public void actualizarPerfil(Perfil perfil, Usuario usuario){
+        try {
+            List<Usuario> usuarioList = consultarListaUsuarios();
+
+            // Buscar el usuario en la lista
+            Usuario usuarioExistente = null;
+            for (Usuario u : usuarioList) {
+                if (u.getNumeroDocumento() == usuario.getNumeroDocumento()) {
+                    usuarioExistente = u;
+                    break;
+                }
+            }
+
+            if (usuarioExistente != null) {
+                // Actualizar el perfil del usuario
+                usuarioExistente.getPerfil().setAltura(perfil.getAltura());
+                usuarioExistente.getPerfil().setPeso(perfil.getPeso());
+                usuarioExistente.getPerfil().setComplexion(perfil.getComplexion());
+                usuarioExistente.getPerfil().setObjetivo(perfil.getObjetivo());
+
+                System.out.println("Actualizando datos del usuario: " + usuario);
+
+                FileWriter fileWriter = new FileWriter("Usuarios.json");
+                Gson gson = new GsonBuilder()
+                        .setPrettyPrinting()
+                        .create();
+                gson.toJson(usuarioList, fileWriter);
+                fileWriter.close();
+
+                System.out.println("Información guardada correctamente");
+            } else {
+                System.out.println("Usuario no encontrado. No se pudo actualizar el perfil.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al gestionar el archivo", e);
+        }
+    }
 }

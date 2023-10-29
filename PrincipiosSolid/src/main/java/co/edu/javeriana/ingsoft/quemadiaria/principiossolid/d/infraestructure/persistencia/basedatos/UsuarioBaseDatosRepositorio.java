@@ -1,6 +1,7 @@
 package co.edu.javeriana.ingsoft.quemadiaria.principiossolid.d.infraestructure.persistencia.basedatos;
 
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Credenciales;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Perfil;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Usuario;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.b.usecases.persistencia.UsuarioRepositorio;
 import java.sql.*;
@@ -79,5 +80,29 @@ public class UsuarioBaseDatosRepositorio implements UsuarioRepositorio {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void actualizarPerfil(Perfil usuarioPerfil, Usuario usuarioActual) {
+        try {
+            // Actualiza los datos del perfil en la base de datos
+            String updateQuery = "UPDATE usuarios SET altura = ?, peso = ?, complexion = ?, objetivo = ? WHERE username = ?";
+            PreparedStatement statement = connection.prepareStatement(updateQuery);
+            statement.setInt(1, usuarioPerfil.getAltura());
+            statement.setInt(2, usuarioPerfil.getPeso());
+            statement.setString(3, usuarioPerfil.getComplexion());
+            statement.setString(4, usuarioPerfil.getObjetivo());
+            statement.setString(5, usuarioActual.getCredenciales().getNombreUsuario());
+
+            int rowsUpdated = statement.executeUpdate();
+
+            if (rowsUpdated > 0) {
+                System.out.println("Perfil actualizado correctamente");
+            } else {
+                System.out.println("No se encontró el usuario o no se actualizó el perfil.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

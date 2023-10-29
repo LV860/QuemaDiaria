@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.IOException;
 
@@ -16,8 +17,11 @@ public class MenuLogin extends Application {
         launch(args);
     }
 
+
+
     @Override
     public void start(Stage primaryStage) throws IOException {
+        System.out.println("leo");
         this.primaryStage = primaryStage;
         showLoginScreen();
 

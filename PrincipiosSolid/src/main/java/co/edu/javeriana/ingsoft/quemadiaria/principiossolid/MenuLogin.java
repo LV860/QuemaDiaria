@@ -21,7 +21,7 @@ public class MenuLogin extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        System.out.println("leo");
+        System.out.println("leo 2");
         this.primaryStage = primaryStage;
         showLoginScreen();
 

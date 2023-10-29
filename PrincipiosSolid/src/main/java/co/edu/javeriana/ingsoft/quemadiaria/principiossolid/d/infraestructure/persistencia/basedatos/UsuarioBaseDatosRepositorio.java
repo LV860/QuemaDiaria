@@ -83,23 +83,23 @@ public class UsuarioBaseDatosRepositorio implements UsuarioRepositorio {
     }
 
     @Override
-    public void actualizarPerfil(Perfil usuarioPerfil, Usuario usuarioActual) {
+    public void actualizarPerfil(Perfil perfil, Usuario usuario) {
         try {
-            // Actualiza los datos del perfil en la base de datos
-            String updateQuery = "UPDATE usuarios SET altura = ?, peso = ?, complexion = ?, objetivo = ? WHERE username = ?";
+            // Crear una consulta de actualización SQL
+            String updateQuery = "UPDATE usuarios SET altura = ?, peso = ?, complexion = ?, objetivo = ? WHERE numeroDocumento = ?";
             PreparedStatement statement = connection.prepareStatement(updateQuery);
-            statement.setInt(1, usuarioPerfil.getAltura());
-            statement.setInt(2, usuarioPerfil.getPeso());
-            statement.setString(3, usuarioPerfil.getComplexion());
-            statement.setString(4, usuarioPerfil.getObjetivo());
-            statement.setString(5, usuarioActual.getCredenciales().getNombreUsuario());
+            statement.setInt(1, perfil.getAltura());
+            statement.setInt(2, perfil.getPeso());
+            statement.setString(3, perfil.getComplexion());
+            statement.setString(4, perfil.getObjetivo());
+            statement.setString(5, usuario.getNumeroDocumento());
 
             int rowsUpdated = statement.executeUpdate();
 
             if (rowsUpdated > 0) {
                 System.out.println("Perfil actualizado correctamente");
             } else {
-                System.out.println("No se encontró el usuario o no se actualizó el perfil.");
+                System.out.println("Usuario no encontrado o no se actualizó el perfil.");
             }
         } catch (SQLException e) {
             e.printStackTrace();

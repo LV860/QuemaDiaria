@@ -94,29 +94,20 @@ public class UsuarioArchivosRepositorio implements UsuarioRepositorio {
     }
 
     @Override
-    public void actualizarPerfil(Perfil perfil, Usuario usuario){
+    public void actualizarPerfil(Perfil perfil, Usuario usuario) {
         try {
             List<Usuario> usuarioList = consultarListaUsuarios();
 
-            // Buscar el usuario en la lista
-            Usuario usuarioExistente = null;
-            for (Usuario u : usuarioList) {
-                if (u.getNumeroDocumento() == usuario.getNumeroDocumento()) {
-                    usuarioExistente = u;
-                    break;
-                }
-            }
+            Usuario usuarioExistente = consultarUsuarioPorUserName(usuario.getCredenciales().getNombreUsuario());
 
             if (usuarioExistente != null) {
-                // Actualizar el perfil del usuario
-                usuarioExistente.getPerfil().setAltura(perfil.getAltura());
-                usuarioExistente.getPerfil().setPeso(perfil.getPeso());
-                usuarioExistente.getPerfil().setComplexion(perfil.getComplexion());
-                usuarioExistente.getPerfil().setObjetivo(perfil.getObjetivo());
 
-                System.out.println("Actualizando datos del usuario: " + usuario);
+                usuarioExistente.setPerfil(perfil);
 
-                FileWriter fileWriter = new FileWriter("Usuarios.json");
+                System.out.println("Actualizando datos del usuario: " + usuarioExistente);
+
+                FileWriter fileWriter = new FileWriter("PrincipiosSolid/Usuarios.json");
+
                 Gson gson = new GsonBuilder()
                         .setPrettyPrinting()
                         .create();

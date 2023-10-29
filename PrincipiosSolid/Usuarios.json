@@ -7,6 +7,12 @@
     "credenciales": {
       "nombreUsuario": "a.barrera",
       "contrasenna": "123456789"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
     }
   },
   {
@@ -17,6 +23,12 @@
     "credenciales": {
       "nombreUsuario": "oscar.r4002",
       "contrasenna": "abcde"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
     }
   },
   {
@@ -27,6 +39,12 @@
     "credenciales": {
       "nombreUsuario": "pepito",
       "contrasenna": "12345"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
     }
   }
 ]

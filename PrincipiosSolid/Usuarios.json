@@ -1,0 +1,32 @@
+[
+  {
+    "numeroDocumento": "123456789",
+    "nombre": "Andres",
+    "apellido": "Barrera",
+    "correo": "a.barrera@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "a.barrera",
+      "contrasenna": "123456789"
+    }
+  },
+  {
+    "numeroDocumento": "10287346",
+    "nombre": "oscar",
+    "apellido": "rodriguez",
+    "correo": "oscar.r@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "oscar.r4002",
+      "contrasenna": "abcde"
+    }
+  },
+  {
+    "numeroDocumento": "8392382",
+    "nombre": "pepe",
+    "apellido": "ramos",
+    "correo": "pepera@gmail.com",
+    "credenciales": {
+      "nombreUsuario": "pepito",
+      "contrasenna": "12345"
+    }
+  }
+]

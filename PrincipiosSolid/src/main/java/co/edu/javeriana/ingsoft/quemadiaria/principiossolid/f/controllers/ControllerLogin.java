@@ -9,6 +9,7 @@ import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.c.servicios.facade.S
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.d.infraestructure.persistencia.archivos.UsuarioArchivosRepositorio;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -23,23 +24,23 @@ public class ControllerLogin {
     public Text txtRegistrar;
     private MenuLogin mainApp;
     RegistroFacade seguridadFacade = new SeguridadFacade();
-    @javafx.fxml.FXML
+    @FXML
     private TextField userBox;
-    @javafx.fxml.FXML
+    @FXML
     private TextField passwordBox;
-    @javafx.fxml.FXML
+    @FXML
     private Label lblInicioRechazado;
 
     public void setMainApp(MenuLogin mainApp) {
         this.mainApp = mainApp;
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void initialize() {
         txtRegistrar.setOnMouseClicked(this::onclickRegistrar);
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void onclickIngresar(ActionEvent actionEvent) {
         UsuarioArchivosRepositorio usuarioArchivosRepositorio = new UsuarioArchivosRepositorio();
         List<Usuario> listaUsuarios = usuarioArchivosRepositorio.consultarListaUsuarios();
@@ -54,19 +55,24 @@ public class ControllerLogin {
 
         if (credencialesValidas) {
             Platform.runLater(() -> {
-                lblInicioRechazado.setText("Credenciales válidas");
+                try {
+                    this.mainApp.showHomeScreen();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         } else {
             Platform.runLater(() -> {
                 lblInicioRechazado.setText("Credenciales inválidas");
+                lblInicioRechazado.setStyle("-fx-text-fill: red;");
             });
         }
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void onclickRegistrar(MouseEvent mouseEvent) {
         try {
-            this.mainApp.mostrarPantallaRegistro1();
+            this.mainApp.showRegister1Screen();
         } catch (IOException e) {
             e.printStackTrace();
         }

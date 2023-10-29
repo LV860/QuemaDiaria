@@ -2,6 +2,7 @@ package co.edu.javeriana.ingsoft.quemadiaria.principiossolid.f.controllers;
 
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.MenuLogin;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -19,23 +20,23 @@ public class ControllerRegister2 {
         this.mainApp = mainApp;
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void initialize() {
         txtIniciarSesion.setOnMouseClicked(this::onclickIniciarSesion);
     }
 
     public void onclickRegistrarse(ActionEvent actionEvent) {
         try {
-            this.mainApp.mostrarPantallaLogin();
+            this.mainApp.showLoginScreen();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void onclickIniciarSesion(MouseEvent mouseEvent) {
         try {
-            this.mainApp.mostrarPantallaLogin();
+            this.mainApp.showLoginScreen();
         } catch (IOException e) {
             e.printStackTrace();
         }

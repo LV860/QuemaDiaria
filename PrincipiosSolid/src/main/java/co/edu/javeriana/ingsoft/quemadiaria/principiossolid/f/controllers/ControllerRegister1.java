@@ -19,7 +19,7 @@ public class ControllerRegister1 {
 
     public void onclickContinuar(ActionEvent actionEvent) {
         try {
-            this.mainApp.mostrarPantallaRegistro2();
+            this.mainApp.showRegister2Screen();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -27,7 +27,7 @@ public class ControllerRegister1 {
 
     public void onclickCancelar(ActionEvent actionEvent) {
         try {
-            this.mainApp.mostrarPantallaLogin();
+            this.mainApp.showLoginScreen();
         } catch (IOException e) {
             e.printStackTrace();
         }

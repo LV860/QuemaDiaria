@@ -26,6 +26,7 @@ public class ControllerRegister2 {
     }
 
     public void onclickRegistrarse(ActionEvent actionEvent) {
+        System.out.println("hola");
         try {
             this.mainApp.showLoginScreen();
         } catch (IOException e) {

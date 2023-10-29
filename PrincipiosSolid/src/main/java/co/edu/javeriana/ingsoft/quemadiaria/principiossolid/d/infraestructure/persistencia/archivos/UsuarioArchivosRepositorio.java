@@ -29,7 +29,7 @@ public class UsuarioArchivosRepositorio implements UsuarioRepositorio {
             List<Usuario> usuarioList = consultarListaUsuarios();
             System.out.println("Registrando usuario: " + usuario);
             usuarioList.add(usuario);
-            FileWriter fileWriter = new FileWriter("Usuarios.json");
+            FileWriter fileWriter = new FileWriter("PrincipiosSolid/Usuarios.json");
             Gson gson = new GsonBuilder()
                     .setPrettyPrinting()
                     .create();
@@ -49,7 +49,7 @@ public class UsuarioArchivosRepositorio implements UsuarioRepositorio {
 
         Gson gson = new Gson();
         try {
-            Path filePath = Path.of("Usuarios.json");
+            Path filePath = Path.of("PrincipiosSolid/Usuarios.json");
             String content = Files.readString(filePath);
             List<Usuario> usersList = new ArrayList<>();
             try {

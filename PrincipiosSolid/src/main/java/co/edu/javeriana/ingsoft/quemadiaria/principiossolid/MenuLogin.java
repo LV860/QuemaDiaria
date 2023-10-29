@@ -13,15 +13,15 @@ import java.io.IOException;
 public class MenuLogin extends Application {
 
     private Stage primaryStage;
+
     public static void main(String[] args) {
         launch(args);
     }
 
 
-
     @Override
     public void start(Stage primaryStage) throws IOException {
-        System.out.println("leo");
+        System.out.println("leo 3");
         this.primaryStage = primaryStage;
         showLoginScreen();
 
@@ -72,13 +72,12 @@ public class MenuLogin extends Application {
     }
 
     public void showUpdateProfile() throws IOException {
-        primaryStage.close();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/co/edu/javeriana/ingsoft/quemadiaria/principiossolid/UpdateProfile.fxml"));
-        Parent root = loader.load();
-        ControllerUpdateProfile controllerUpdateProfile = loader.getController();
-        controllerUpdateProfile.setMainApp(this);
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateProfile.fxml"));
+        Parent updateProfile = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Actualizar Perfil");
+        stage.setScene(new Scene(updateProfile));
+        stage.show();
     }
 }

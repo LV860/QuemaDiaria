@@ -49,11 +49,6 @@ public class ControllerUpdateProfile implements Initializable {
     private ChoiceBox<String> textComplexion;
     @FXML
     private ChoiceBox<String> textObjetivo;
-    private ActualizarPerfil actualizarPerfil;
-
-    public void setActualizarPerfil(ActualizarPerfil actualizarPerfil) {
-        this.actualizarPerfil = actualizarPerfil;
-    }
 
     public void setMainApp(MenuLogin mainApp) {
         this.mainApp = mainApp;
@@ -151,6 +146,15 @@ public class ControllerUpdateProfile implements Initializable {
     public void onClickLogOut(ActionEvent event) {
         try {
             this.mainApp.showLoginScreen();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onClickUpdateAccount(ActionEvent event) {
+        try {
+            this.mainApp.showUpdateProfile();
         } catch (IOException e) {
             e.printStackTrace();
         }

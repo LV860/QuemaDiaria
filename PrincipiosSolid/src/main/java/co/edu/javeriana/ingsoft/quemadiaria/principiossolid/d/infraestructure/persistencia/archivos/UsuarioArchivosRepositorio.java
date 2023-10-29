@@ -29,7 +29,7 @@ public class UsuarioArchivosRepositorio implements UsuarioRepositorio {
             List<Usuario> usuarioList = consultarListaUsuarios();
             System.out.println("Registrando usuario: " + usuario);
             usuarioList.add(usuario);
-            FileWriter fileWriter = new FileWriter("Usuarios.json");
+            FileWriter fileWriter = new FileWriter("PrincipiosSolid/Usuarios.json");
             Gson gson = new GsonBuilder()
                     .setPrettyPrinting()
                     .create();

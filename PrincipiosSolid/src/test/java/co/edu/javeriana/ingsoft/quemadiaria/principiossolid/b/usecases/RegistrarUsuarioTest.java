@@ -1,6 +1,7 @@
 package co.edu.javeriana.ingsoft.quemadiaria.principiossolid.b.usecases;
 
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Credenciales;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Perfil;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Usuario;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.b.usecases.RegistrarUsuario;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.b.usecases.persistencia.UsuarioRepositorio;
@@ -54,6 +55,16 @@ public class RegistrarUsuarioTest {
                     .filter(usuario -> usuario.getCredenciales().getNombreUsuario().equals(userName))
                     .findFirst()
                     .orElse(null);
+        }
+
+        @Override
+        public void actualizarPerfil(Perfil usuarioPerfil, Usuario usuarioActual) {
+            for (Usuario usuario : usuarios) {
+                if (usuario.equals(usuarioActual)) {
+                    usuario.setPerfil(usuarioPerfil);
+                    break;
+                }
+            }
         }
 
         List<Usuario> getUsuarios() {

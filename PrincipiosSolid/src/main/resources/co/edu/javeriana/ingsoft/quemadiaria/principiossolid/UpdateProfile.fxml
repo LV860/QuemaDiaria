@@ -155,26 +155,26 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <TextField id="textPeso" accessibleText="textPeso" layoutX="304.0" layoutY="229.0" prefHeight="25.0" prefWidth="49.0" promptText="kg" text="textPeso" />
-      <Text fill="WHITE" layoutX="309.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="184.8085708618164" />
+      <TextField fx:id="textPeso" layoutX="304.0" layoutY="229.0" prefHeight="25.0" prefWidth="49.0" promptText="kg" />
+      <Text fx:id="textNombreNEW" id="textNombre" fill="WHITE" layoutX="309.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="?" wrappingWidth="184.8085708618164" />
       <Text fill="WHITE" layoutX="240.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="309.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="184.8085708618164" />
+      <Text fx:id="textApellidoNEW" id="textApellido" fill="WHITE" layoutX="309.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="184.8085708618164" />
       <Text fill="WHITE" layoutX="241.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No. Identidad:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="333.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="184.8085708618164" />
+      <Text fx:id="textNumIdentidadNEW" id="textNumIdentidad" fill="WHITE" layoutX="333.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="184.8085708618164" />
       <Text fill="WHITE" layoutX="241.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="300.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo:" wrappingWidth="184.8085708618164" />
+      <Text fx:id="textCorreoNEW" fill="WHITE" layoutX="300.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="184.8085708618164" />
       <Text id="peso" fill="WHITE" layoutX="243.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso:">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -185,25 +185,25 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <TextField id="textAltura" accessibleText="textAltura" layoutX="435.0" layoutY="229.0" prefHeight="25.0" prefWidth="49.0" promptText="Cm" text="textAltura" />
+      <TextField fx:id="textAltura" layoutX="435.0" layoutY="229.0" prefHeight="25.0" prefWidth="49.0" promptText="cm" />
       <Text fill="WHITE" layoutX="246.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Complexión:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <ChoiceBox id="textComplexion" accessibleText="textComplexion" layoutX="328.0" layoutY="269.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="textComplexion" layoutX="328.0" layoutY="269.0" prefWidth="150.0" />
       <Text fill="WHITE" layoutX="246.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Objetivo:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <ChoiceBox id="textObjetivo" accessibleText="textObjetivo" layoutX="329.0" layoutY="305.0" prefWidth="150.0" />
-      <Button layoutX="394.0" layoutY="353.0" mnemonicParsing="false" style="-fx-background-color: #e4660c;" text="Guardar" textFill="WHITE">
+      <ChoiceBox fx:id="textObjetivo" layoutX="329.0" layoutY="305.0" prefWidth="150.0" />
+      <Button id="buttonGuardar" layoutX="394.0" layoutY="353.0" mnemonicParsing="false" onAction="#onClickSave" style="-fx-background-color: #e4660c;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="266.0" layoutY="353.0" mnemonicParsing="false" style="-fx-background-color: #262424;" text="Cancelar" textFill="WHITE">
+      <Button id="buttonCancelar" layoutX="266.0" layoutY="353.0" mnemonicParsing="false" style="-fx-background-color: #262424;" text="Cancelar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -235,9 +235,9 @@
             </ImageView>
          </children>
       </Group>
-      <AnchorPane fx:id="setUpAccount" layoutX="423.0" layoutY="80.0" prefHeight="323.0" prefWidth="171.0" style="-fx-background-color: #2b2a2a;">
+      <AnchorPane fx:id="setUpAccount" layoutX="431.0" layoutY="80.0" prefHeight="323.0" prefWidth="171.0" style="-fx-background-color: #2b2a2a;">
          <children>
-            <Button fx:id="setUpProfile" layoutX="4.0" layoutY="53.0" mnemonicParsing="false" onAction="#onClickUpdateAccount" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Actualizar perfil" textFill="WHITE" />
+            <Button fx:id="setUpProfile" layoutX="4.0" layoutY="53.0" mnemonicParsing="false" onAction="#onClickUpdate" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Actualizar perfil" textFill="WHITE" />
             <Button layoutX="5.0" layoutY="88.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Favoritos" textFill="WHITE" />
             <Button layoutX="4.0" layoutY="123.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Notificaciones" textFill="WHITE" />
             <Button layoutX="5.0" layoutY="158.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: transparent;" text="Pagos" textFill="WHITE" />

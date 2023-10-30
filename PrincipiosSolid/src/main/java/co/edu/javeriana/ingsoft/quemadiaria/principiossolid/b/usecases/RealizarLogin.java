@@ -11,10 +11,13 @@ public class RealizarLogin {
     public RealizarLogin(UsuarioRepositorio usuarioRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
     }
-    public void login(String nombreUsuario, String contrasenna) {
 
+    public Usuario login(String nombreUsuario, String contrasenna) {
         Usuario usuario = usuarioRepositorio.consultarUsuarioPorUserName(nombreUsuario);
-        if(!usuario.getCredenciales().validarCredenciales(nombreUsuario, contrasenna))
-            throw new QuemaDiariaException(QuemaDiariaException.ERROR_CREDENCIALES_INVALIDAS, "Credenciales invalidas");
+        if (usuario.getCredenciales().validarCredenciales(nombreUsuario, contrasenna)) {
+            return usuario;
+        } else {
+            throw new QuemaDiariaException(QuemaDiariaException.ERROR_CREDENCIALES_INVALIDAS, "Credenciales inválidas");
+        }
     }
 }

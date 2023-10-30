@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * UsuarioArchivosRepositorio es una clase que implementa la interfaz UsuarioRepositorio para gestionar un usuario
@@ -98,23 +99,24 @@ public class UsuarioArchivosRepositorio implements UsuarioRepositorio {
         try {
             List<Usuario> usuarioList = consultarListaUsuarios();
 
-            Usuario usuarioExistente = consultarUsuarioPorUserName(usuario.getCredenciales().getNombreUsuario());
+            // Buscar el usuario que coincida con el usuario proporcionado
+            Optional<Usuario> usuarioExistente = usuarioList.stream()
+                    .filter(u -> u.getCredenciales().getNombreUsuario().equals(usuario.getCredenciales().getNombreUsuario()))
+                    .findFirst();
 
-            if (usuarioExistente != null) {
+            if (((Optional<?>) usuarioExistente).isPresent()) {
+                // Actualizar el perfil del usuario existente
+                usuarioExistente.get().setPerfil(perfil);
 
-                usuarioExistente.setPerfil(perfil);
-
-                System.out.println("Actualizando datos del usuario: " + usuarioExistente);
-
+                // Guardar los cambios en el archivo JSON
                 FileWriter fileWriter = new FileWriter("PrincipiosSolid/Usuarios.json");
-
                 Gson gson = new GsonBuilder()
                         .setPrettyPrinting()
                         .create();
                 gson.toJson(usuarioList, fileWriter);
                 fileWriter.close();
 
-                System.out.println("Información guardada correctamente");
+                System.out.println("Información actualizada correctamente");
             } else {
                 System.out.println("Usuario no encontrado. No se pudo actualizar el perfil.");
             }

@@ -2,7 +2,10 @@ package co.edu.javeriana.ingsoft.quemadiaria.principiossolid.f.controllers;
 
 
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.MenuLogin;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Credenciales;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Usuario;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.excepciones.QuemaDiariaException;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.b.usecases.RealizarLogin;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.c.servicios.dto.RegistroUsuarioDTO;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.c.servicios.facade.RegistroFacade;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.c.servicios.facade.SeguridadFacade;
@@ -41,19 +44,22 @@ public class ControllerLogin {
     }
 
     @FXML
-    public void onclickIngresar(ActionEvent actionEvent) {
+    public Credenciales onclickIngresar(ActionEvent actionEvent) {
         UsuarioArchivosRepositorio usuarioArchivosRepositorio = new UsuarioArchivosRepositorio();
         List<Usuario> listaUsuarios = usuarioArchivosRepositorio.consultarListaUsuarios();
 
-        boolean credencialesValidas = false;
+        Credenciales credencialesUsuarioActivo = null;
         for (Usuario u : listaUsuarios) {
             if (u.getCredenciales().validarCredenciales(userBox.getText(), passwordBox.getText())) {
-                credencialesValidas = true;
+                credencialesUsuarioActivo = new Credenciales(userBox.getText(), passwordBox.getText());
                 break;
             }
         }
 
-        if (credencialesValidas) {
+        if (credencialesUsuarioActivo != null) {
+            // Llama al método para establecer las credenciales del usuario activo
+            mainApp.setCredencialesUsuarioActivo(credencialesUsuarioActivo);
+
             Platform.runLater(() -> {
                 try {
                     this.mainApp.showHomeScreen();
@@ -67,6 +73,7 @@ public class ControllerLogin {
                 lblInicioRechazado.setStyle("-fx-text-fill: red;");
             });
         }
+        return credencialesUsuarioActivo;
     }
 
     @FXML

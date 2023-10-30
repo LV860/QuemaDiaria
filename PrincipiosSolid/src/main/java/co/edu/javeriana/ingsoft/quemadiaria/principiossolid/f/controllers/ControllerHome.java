@@ -1,17 +1,23 @@
 package co.edu.javeriana.ingsoft.quemadiaria.principiossolid.f.controllers;
 
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.MenuLogin;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Credenciales;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -96,11 +102,28 @@ public class ControllerHome implements Initializable {
         }
     }
     @FXML
-    public void onClickUpdateProfile() {
-        try {
-            this.mainApp.showUpdateProfile();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void onClickUpdateProfile(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Actualizar perfil");
+        alert.setHeaderText("¿Estás seguro de que deseas actualizar tu perfil?");
+
+        ButtonType confirmButton = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(confirmButton, cancelButton);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == confirmButton) {
+            try {
+                this.mainApp.showUpdateProfile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                this.mainApp.showHomeScreen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -74,7 +74,6 @@ public class MenuLogin extends Application {
     public void showUpdateProfile() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateProfile.fxml"));
         Parent updateProfile = loader.load();
-
         Stage stage = new Stage();
         stage.setTitle("Actualizar Perfil");
         stage.setScene(new Scene(updateProfile));

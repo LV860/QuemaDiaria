@@ -97,10 +97,27 @@ public class ControllerHome implements Initializable {
     }
     @FXML
     public void onClickUpdateProfile() {
-        try {
-            this.mainApp.showUpdateProfile();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Actualizar perfil");
+        alert.setHeaderText("¿Estás seguro de que deseas actualizar tu perfil?");
+
+        ButtonType confirmButton = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelButton = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(confirmButton, cancelButton);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == confirmButton) {
+            try {
+                this.mainApp.showUpdateProfile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                this.mainApp.showHomeScreen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -2,7 +2,9 @@ package co.edu.javeriana.ingsoft.quemadiaria.principiossolid.f.controllers;
 
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.MenuLogin;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Perfil;
+import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Usuario;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.b.usecases.ActualizarPerfil;
+import com.google.gson.Gson;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,21 +12,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ControllerUpdateProfile implements Initializable {
@@ -42,13 +46,22 @@ public class ControllerUpdateProfile implements Initializable {
     @FXML
     private Button setUpProfile;
     @FXML
-    private TextField textAltura;
-    @FXML
     private TextField textPeso;
+    @FXML
+    private TextField textAltura;
     @FXML
     private ChoiceBox<String> textComplexion;
     @FXML
     private ChoiceBox<String> textObjetivo;
+    @FXML
+    private Text textNombre;
+    @FXML
+    private Text textApellido;
+    @FXML
+    private Text textNumIdentidad;
+    @FXML
+    private Text textCorreo;
+
 
     public void setMainApp(MenuLogin mainApp) {
         this.mainApp = mainApp;
@@ -56,14 +69,38 @@ public class ControllerUpdateProfile implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        setUpAccount.setTranslateX(171);
-        cuenta1.setVisible(true);
-        cuenta2.setVisible(false);
-        ObservableList<String> opcionesComplexion = FXCollections.observableArrayList("Delgada", "Normal", "Robusta");
-        ObservableList<String> opcionesObjetivo = FXCollections.observableArrayList("Llegar al peso ideal de acuerdo a mi altura", "Adelgazar y tonificar mi cuerpo", "Ganar masa muscular");
-        // Asignar la lista de elementos al ChoiceBox
-        textComplexion.setItems(opcionesComplexion);
-        textObjetivo.setItems(opcionesObjetivo);
+        try {
+            System.out.println("Initialize method is called.");
+            loadUserData();
+            setUpAccount.setTranslateX(171);
+            cuenta1.setVisible(true);
+            cuenta2.setVisible(false);
+            ObservableList<String> opcionesComplexion = FXCollections.observableArrayList("Delgada", "Normal", "Robusta");
+            ObservableList<String> opcionesObjetivo = FXCollections.observableArrayList("Llegar al peso ideal de acuerdo a mi altura", "Adelgazar y tonificar mi cuerpo", "Ganar masa muscular");
+            // Asignar la lista de elementos al ChoiceBox
+            textComplexion.setItems(opcionesComplexion);
+            textObjetivo.setItems(opcionesObjetivo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        };
+    }
+
+    private void loadUserData() {
+        try (FileReader reader = new FileReader("Usuarios.json")) {
+            Gson gson = new Gson();
+            Usuario[] usuarios = gson.fromJson(reader, Usuario[].class);
+
+            // Ahora, tienes un array de objetos Usuario que puedes procesar según tus necesidades.
+
+            // Por ejemplo, puedes recorrer los usuarios:
+            for (Usuario usuario : usuarios) {
+                System.out.println("Nombre: " + usuario.getNombre());
+                System.out.println("Apellido: " + usuario.getApellido());
+                // Resto de los campos
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void animateAndSetVisible(TranslateTransition slide, double toX, Group groupToShow, Group groupToHide) {
@@ -152,11 +189,43 @@ public class ControllerUpdateProfile implements Initializable {
     }
 
     @FXML
-    public void onClickUpdateAccount(ActionEvent event) {
+    public void onClickUpdate(ActionEvent event) {
         try {
             this.mainApp.showUpdateProfile();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void onClickSave(ActionEvent event) {
+
+        String peso = textPeso.getText();
+        String altura = textAltura.getText();
+        String complexion = textComplexion.getValue();
+        String objetivo = textObjetivo.getValue();
+
+        // Muestra una alerta de confirmación
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Actualizar datos");
+        alert.setHeaderText("Datos actualizados correctamente");
+
+        ButtonType confirmButton = new ButtonType("Confirmar", ButtonBar.ButtonData.OK_DONE);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == confirmButton) {
+            try {
+                this.mainApp.showHomeScreen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                this.mainApp.showUpdateProfile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

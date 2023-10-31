@@ -1,6 +1,5 @@
 package co.edu.javeriana.ingsoft.quemadiaria.principiossolid;
 
-import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.a.dominio.entidades.Credenciales;
 import co.edu.javeriana.ingsoft.quemadiaria.principiossolid.f.controllers.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import java.io.IOException;
 public class MenuLogin extends Application {
 
     private Stage primaryStage;
-    private Credenciales credencialesUsuarioActivo;
 
     public static void main(String[] args) {
         launch(args);
@@ -76,25 +74,10 @@ public class MenuLogin extends Application {
     public void showUpdateProfile() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("UpdateProfile.fxml"));
         Parent updateProfile = loader.load();
-        ControllerUpdateProfile controllerUpdateProfile = loader.getController();
-
-        controllerUpdateProfile.setMainApp(this);
-
-        controllerUpdateProfile.setUsuarioActivo(credencialesUsuarioActivo);
-
-        controllerUpdateProfile.loadUserData(credencialesUsuarioActivo);
 
         Stage stage = new Stage();
         stage.setTitle("Actualizar Perfil");
         stage.setScene(new Scene(updateProfile));
         stage.show();
-    }
-
-    public void setCredencialesUsuarioActivo(Credenciales credencialesUsuarioActivo) {
-        this.credencialesUsuarioActivo = credencialesUsuarioActivo;
-    }
-
-    public Credenciales getCredencialesUsuarioActivo(){
-        return credencialesUsuarioActivo;
     }
 }

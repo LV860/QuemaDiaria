@@ -1,0 +1,162 @@
+[
+  {
+    "numeroDocumento": "12345",
+    "nombre": "pedro",
+    "apellido": "perez",
+    "correo": "pedrito@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "pedrito",
+      "contrasenna": "12345@"
+    },
+    "perfil": {
+      "altura": 80,
+      "peso": 180,
+      "complexion": "Normal",
+      "objetivo": "Adelgazar y tonificar mi cuerpo"
+    }
+  },
+  {
+    "numeroDocumento": "123",
+    "nombre": "pedro",
+    "apellido": "benito",
+    "correo": "pedro@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "julio123",
+      "contrasenna": "13345@"
+    },
+    "perfil": {
+      "altura": 56,
+      "peso": 170,
+      "complexion": "Normal",
+      "objetivo": "Adelgazar y tonificar mi cuerpo"
+    }
+  },
+  {
+    "numeroDocumento": "10734894389",
+    "correo": "usuario1@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "user1",
+      "contrasenna": "contrasenia1"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
+    }
+  },
+  {
+    "numeroDocumento": "10734894389",
+    "correo": "usuario1@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "user1",
+      "contrasenna": "contrasenia1"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
+    }
+  },
+  {
+    "numeroDocumento": "10734894389",
+    "correo": "usuario1@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "user1",
+      "contrasenna": "contrasenia1"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
+    }
+  },
+  {
+    "numeroDocumento": "10734894389",
+    "correo": "usuario1@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "user1",
+      "contrasenna": "contrasenia1"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
+    }
+  },
+  {
+    "numeroDocumento": "10734894389",
+    "correo": "usuario1@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "user1",
+      "contrasenna": "contrasenia1"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
+    }
+  },
+  {
+    "numeroDocumento": "73298932893",
+    "correo": "usuario2@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "user2",
+      "contrasenna": "contrasenia2"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
+    }
+  },
+  {
+    "numeroDocumento": "12345",
+    "correo": "pedrito@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "pedrito",
+      "contrasenna": "12345@"
+    },
+    "perfil": {
+      "altura": 175,
+      "peso": 70,
+      "complexion": "Normal",
+      "objetivo": "Adelgazar y tonificar mi cuerpo"
+    }
+  },
+  {
+    "numeroDocumento": "12345",
+    "correo": "pedrito@javeriana.edu.co",
+    "credenciales": {
+      "nombreUsuario": "pedrito",
+      "contrasenna": "12345@"
+    },
+    "perfil": {
+      "altura": 175,
+      "peso": 70,
+      "complexion": "Normal",
+      "objetivo": "Adelgazar y tonificar mi cuerpo"
+    }
+  },
+  {
+    "numeroDocumento": "37492045",
+    "nombre": "Maria",
+    "apellido": "Cardenas",
+    "correo": "maria@gamil.com",
+    "credenciales": {
+      "nombreUsuario": "majo_",
+      "contrasenna": "123456789*"
+    },
+    "perfil": {
+      "altura": 0,
+      "peso": 0,
+      "complexion": "",
+      "objetivo": ""
+    }
+  }
+]
